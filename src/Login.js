@@ -4,6 +4,7 @@ import './Login.css'
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import urlencode from "form-urlencoded";
+
 import { Redirect} from "react-router-dom";
 
 class Login extends Component {
@@ -35,13 +36,8 @@ class Login extends Component {
 
         axios.post("/login", urlencode(loginParams))
             .then((response) => {
-                if (response.data.role === "admin"){
-                    this.setState({isAdmin: true})
-                }
-                else{
+                this.props.history.push('/Schedule');
 
-                    this.props.history.push('/Schedule');
-                }
             })
             .catch((error) => {
                 alert("Username or Password are incorrect, Please try again.");
@@ -63,7 +59,7 @@ class Login extends Component {
 
 
                             <div className={"TextBox"} >
-                                <TextField label={"Username or email"} type="username" fullWidth
+                                <TextField label={"Email"} type="username" fullWidth
                                            onChange={this.updateInputValue}/>
                             </div>
 

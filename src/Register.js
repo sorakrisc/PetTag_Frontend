@@ -32,22 +32,21 @@ class Login extends Component {
             password: this.state.password,
             firstname: this.state.firstName,
             lastname: this.state.lastName,
+
+            gender: this.state.gender,
+            dateOfBirth: this.state.year+'/'+this.state.month+'/'+this.state.day,
+            phone: this.state.phone
+
         };
 
 
         axios.post("/user/register", urlencode(regParams))
             .then((response) => {
-                if (response.data.role === "admin"){
-                    this.setState({isAdmin: true})
-                }
-                else{
-
-                    this.props.history.push('/Schedule');
-                }
+                console.log(response);
             })
             .catch((error) => {
                 alert("Username or Password are incorrect, Please try again.");
-                window.location.reload();
+                // window.location.reload();
             })
     }
 
