@@ -5,8 +5,6 @@ import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import urlencode from "form-urlencoded";
 
-import { Redirect} from "react-router-dom";
-
 class Login extends Component {
 
     constructor(props){
@@ -36,7 +34,7 @@ class Login extends Component {
 
         axios.post("/login", urlencode(loginParams))
             .then((response) => {
-                this.props.history.push('/edit-profile');
+                this.props.history.push('/');
 
             })
             .catch((error) => {

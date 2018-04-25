@@ -4,7 +4,8 @@ import './index.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Login from './Login'
 import Register from './Register'
-import Profile from './EditProfile'
+import EditProfile from './EditProfile'
+import Profile from './Profile'
 import registerServiceWorker from './registerServiceWorker';
 import {
     BrowserRouter as Router,
@@ -35,9 +36,10 @@ function MainApp(){
             <MuiThemeProvider theme={theme}>
                 <Router>
                     <div>
-                        <Route exact path="/" component={Login} />
+                        <Route exact path="/login" component={Login} />
                         <Route exact path="/register" component={Register} />
-                        <Route exact path="/edit-profile" component={Profile} />
+                        <Route exact path="/edit-profile" component={EditProfile} />
+                        <Route exact path="/" component={Profile} />
                     </div>
                 </Router>
             </MuiThemeProvider>
