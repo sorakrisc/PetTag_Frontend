@@ -7,7 +7,7 @@ import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import urlencode from "form-urlencoded";
 import Select from 'material-ui/Select';
-import Input, { InputLabel } from 'material-ui/Input';
+import { InputLabel } from 'material-ui/Input';
 import { FormControl, FormHelperText } from 'material-ui/Form';
 import { MenuItem } from 'material-ui/Menu';
 import Phone from 'react-phone-number-input'
@@ -63,11 +63,9 @@ class Login extends Component {
 
         axios.post("/user/register", urlencode(regParams))
             .then((response) => {
-                console.log(response);
+                this.props.history.push('/register');
             })
             .catch((error) => {
-                alert("Username or Password are incorrect, Please try again.");
-                // window.location.reload();
             })
     }
     register(e){
@@ -120,19 +118,23 @@ class Login extends Component {
             this.registerPost();
         }
     }
-    async isValidEmail(){
-        await axios.post("/user/register/isValidEmail", urlencode({email:this.state.email}))
+    isValidEmail(){
+        axios.post("/user/register/isValidEmail", urlencode({email:this.state.email}))
             .then((response) => {
-                this.setState({isValidEmail:true});
+                if(response.data === "valid") {
+                    this.setState({emailES: false, emailHT: ""});
+                    this.toggleInfoForm();
+                } else{
+                    this.setState({emailES:true, emailHT:"That username is taken. Try another."});
+                }
+
             })
             .catch((error) => {
-                this.setState({isValidEmail:false});
-                console.log(error)
+
+
             });
-        console.log(this.state.isValidEmail);
-        return this.state.isValidEmail;
     }
-    async nextToAddrForm(e){
+    nextToAddrForm(e){
         e.preventDefault();
         let regStatus = true;
         if(isEmpty(this.state.firstName)){
@@ -213,18 +215,7 @@ class Login extends Component {
             this.setState({phoneES:false, phoneHT:""});
         }
         if(regStatus){
-            let isInvalidEmail =  await !this.isValidEmail(this.state.email);
-            console.log("isInvalidEmaiil:"+ isInvalidEmail);
-            if(isInvalidEmail){
-                this.setState({emailES:true, emailHT:"That username is taken. Try another."});
-                regStatus=false;
-            }
-            else{
-                this.setState({emailES: false, emailHT: ""});
-            }
-            if(regStatus) {
-                this.toggleInfoForm();
-            }
+            this.isValidEmail(this.state.email);
         }
     }
 
