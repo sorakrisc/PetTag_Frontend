@@ -23,14 +23,16 @@ h5{
     margin-top:25px;
     text-align:center;
 }
-
+.optionRegister{
+    text-align:center;
+}
 .parentDiv{
     text-align: center;
 }
 
 .TextBox2{
-
-    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
 }
 .TextBox{
     margin-bottom: 30px;
@@ -56,11 +58,11 @@ h5{
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
 }
 .loginBox{
-    padding: 48px 40px 36px
+    padding: 36px 40px 36px;
+    height: 92%;
 }
 .regForm{
     display: inline-block;
-    height: 850px;
     width: 450px;
     background-color:white;
     border: 1px solid transparent;
@@ -83,9 +85,9 @@ h5{
 
 }
 
-.informationBox2 {
+.informationBoxRegister {
     text-align: center;
-    padding-top: 10px;
+    /*height:75px;*/
 }
 
 .BoxOfText{
@@ -96,4 +98,9 @@ h5{
     margin-left: 340px;
     margin-right: 320px;
     border-radius: 15px;
+}
+
+.optionBottom{
+    justify-content: space-between;
+    display: flex;
 }

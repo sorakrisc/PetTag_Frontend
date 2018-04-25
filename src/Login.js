@@ -36,7 +36,7 @@ class Login extends Component {
 
         axios.post("/login", urlencode(loginParams))
             .then((response) => {
-                this.props.history.push('/Schedule');
+                this.props.history.push('/edit-profile');
 
             })
             .catch((error) => {
@@ -64,7 +64,7 @@ class Login extends Component {
                             </div>
 
                             <div className={"TextBox"}>
-                                <TextField label={"Enter your password"} type="password" fullWidth
+                                <TextField style={{padding:2}} label={"Enter your password"} type="password" fullWidth
                                            onChange={this.updatePasswordValue}/>
                             </div>
 
